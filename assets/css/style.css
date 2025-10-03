@@ -1,0 +1,72 @@
+/* POS System Custom Styles */
+:root {
+    --light-gray: #F5F7F8;
+    --gold: #F4CE14;
+    --dark-green: #495E57;
+    --charcoal: #45474B;
+}
+
+/* Role-specific background colors */
+.manager-bg {
+    background-color: var(--gold);
+}
+
+.cashier-bg {
+    background-color: var(--dark-green);
+}
+
+.operator-bg {
+    background-color: var(--charcoal);
+}
+
+.inventory_operator-bg {
+    background-color: var(--charcoal);
+}
+
+/* Role-specific text colors */
+.manager-text {
+    color: var(--gold);
+}
+
+.cashier-text {
+    color: var(--dark-green);
+}
+
+.operator-text {
+    color: var(--charcoal);
+}
+
+.inventory_operator-text {
+    color: var(--charcoal);
+}
+
+/* Focus styles for form inputs */
+.manager-focus:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(244, 206, 20, 0.1);
+}
+
+.cashier-focus:focus {
+    border-color: var(--dark-green);
+    box-shadow: 0 0 0 3px rgba(73, 94, 87, 0.1);
+}
+
+.operator-focus:focus {
+    border-color: var(--charcoal);
+    box-shadow: 0 0 0 3px rgba(69, 71, 75, 0.1);
+}
+
+.inventory_operator-focus:focus {
+    border-color: var(--charcoal);
+    box-shadow: 0 0 0 3px rgba(69, 71, 75, 0.1);
+}
+
+/* Hover effects for role cards */
+.role-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.role-card {
+    transition: all 0.3s ease;
+}
