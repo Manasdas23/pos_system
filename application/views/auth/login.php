@@ -60,6 +60,27 @@
                     <p class="text-dark-green mt-2">Enter your credentials to access the system</p>
                 </div>
 
+                <!-- Error Message -->
+                <?php if (isset($error) && !empty($error)): ?>
+                <div class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                    <i class="material-icons text-red-600 mr-2">error</i>
+                    <?php echo $error; ?>
+                </div>
+                <?php endif; ?>
+
+                <!-- Info Message -->
+                <?php if (isset($info) && !empty($info)): ?>
+                <div class="mb-4 p-4 bg-blue-100 border border-blue-400 text-blue-700 rounded-lg">
+                    <i class="material-icons text-blue-600 mr-2">info</i>
+                    <?php echo $info; ?>
+                    <div class="mt-2">
+                        <a href="<?php echo base_url('auth/logout'); ?>" class="text-blue-800 underline hover:text-blue-900">
+                            Click here to logout first
+                        </a>
+                    </div>
+                </div>
+                <?php endif; ?>
+
                 <!-- Login Form -->
                 <form method="POST" action="<?php echo base_url('auth/process_login'); ?>" class="space-y-6">
                     <input type="hidden" name="role" value="<?php echo $current_role_key; ?>">
@@ -82,14 +103,24 @@
                         <label for="password" class="block text-sm font-semibold text-charcoal mb-2">
                             Password
                         </label>
-                        <input 
-                            type="password" 
-                            id="password" 
-                            name="password" 
-                            required 
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg <?php echo $current_role_key; ?>-focus outline-none transition-colors"
-                            placeholder="Enter your password"
-                        >
+                        <div class="relative">
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                required 
+                                class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg <?php echo $current_role_key; ?>-focus outline-none transition-colors"
+                                placeholder="Enter your password"
+                            >
+                            <button 
+                                type="button" 
+                                id="togglePassword" 
+                                class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700 focus:outline-none"
+                                onclick="togglePasswordVisibility()"
+                            >
+                                <i class="material-icons" id="passwordIcon">visibility</i>
+                            </button>
+                        </div>
                     </div>
 
                     <div class="flex items-center justify-between">
@@ -122,5 +153,28 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const passwordIcon = document.getElementById('passwordIcon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                passwordIcon.textContent = 'visibility_off';
+            } else {
+                passwordInput.type = 'password';
+                passwordIcon.textContent = 'visibility';
+            }
+        }
+
+        // Optional: Add keyboard support (Enter key on the eye icon)
+        document.getElementById('togglePassword').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                togglePasswordVisibility();
+            }
+        });
+    </script>
 </body>
 </html>
